@@ -1,7 +1,69 @@
-# Cath Prediction using Machine Learning Models
+# Need for Catheterization in Coronary Artery Disease Prediction using Machine Learning Models
 
 ## Overview
-This project focuses on predicting the target variable "Cath" using a variety of machine learning models. The dataset used for this analysis is stored in `dataset.csv`. Multiple models were implemented to compare their performance in terms of accuracy, precision, recall, F1 score, and confusion matrix metrics (True Negatives, False Positives, False Negatives, True Positives). Feature importance was also analyzed to understand the contribution of each variable to the predictive performance.
+This project focuses on predicting need for catheterization in Coronary Artery Disease using a variety of machine learning models. Multiple models were implemented to compare their performance in terms of accuracy, precision, recall, F1 score, and confusion matrix metrics (True Negatives, False Positives, False Negatives, True Positives). Feature importance was also analyzed to understand the contribution of each variable to the predictive performance.
+
+## Dataset Variables Description
+The dataset used for predicting the need for catheterization in Coronary Artery Disease contains the following variables:
+
+- **Age**: The age of the patient in years. Age is a critical factor in assessing cardiovascular risk.
+- **Weight**: The weight of the patient in kilograms. It contributes to the calculation of BMI and overall health assessment.
+- **Length**: The height of the patient in centimeters. Used in BMI calculation and to understand body proportions.
+- **Sex**: The gender of the patient (e.g., Male or Female). Gender can influence the prevalence and presentation of coronary artery disease.
+- **BMI**: Body Mass Index, calculated as weight (kg) divided by height (m) squared. It indicates whether the patient is underweight, normal weight, overweight, or obese.
+- **DM**: Diabetes Mellitus status (e.g., Yes/No or 1/0). Diabetes is a significant risk factor for coronary artery disease.
+- **HTN**: Hypertension status (e.g., Yes/No or 1/0). High blood pressure is a major risk factor for heart disease.
+- **Current Smoker**: Indicates if the patient currently smokes (e.g., Yes/No or 1/0). Smoking is a well-known risk factor for cardiovascular issues.
+- **EX-Smoker**: Indicates if the patient is a former smoker (e.g., Yes/No or 1/0). Past smoking history can still impact current health risks.
+- **FH**: Family History of coronary artery disease (e.g., Yes/No or 1/0). Genetic predisposition plays a role in heart disease risk.
+- **Obesity**: Indicates if the patient is classified as obese based on BMI or other criteria (e.g., Yes/No or 1/0).
+- **CRF**: Chronic Renal Failure status (e.g., Yes/No or 1/0). Kidney disease can complicate cardiovascular health.
+- **CVA**: Cerebrovascular Accident (stroke) history (e.g., Yes/No or 1/0). Previous strokes may indicate broader vascular issues.
+- **Airway Disease**: Presence of chronic airway diseases like COPD (e.g., Yes/No or 1/0). Respiratory conditions can affect overall cardiovascular strain.
+- **Thyroid Disease**: Presence of thyroid disorders (e.g., Yes/No or 1/0). Thyroid dysfunction can influence heart function.
+- **CHF**: Congestive Heart Failure status (e.g., Yes/No or 1/0). Indicates existing heart failure, which is closely related to coronary artery disease.
+- **DLP**: Dyslipidemia status (e.g., Yes/No or 1/0). Abnormal lipid levels are a risk factor for atherosclerosis.
+- **BP**: Blood Pressure measurement, typically systolic over diastolic (mmHg). Direct measure of cardiovascular stress.
+- **PR**: Pulse Rate, measured in beats per minute. Indicates heart rate, which can reflect cardiovascular health.
+- **Edema**: Presence of edema (swelling due to fluid retention) (e.g., Yes/No or 1/0). Can indicate heart failure or other circulatory issues.
+- **Weak Peripheral Pulse**: Indicates if peripheral pulses are weak (e.g., Yes/No or 1/0). Suggests potential circulatory problems.
+- **Lung Rales**: Presence of crackling sounds in lungs (e.g., Yes/No or 1/0). Often associated with heart failure due to fluid buildup.
+- **Systolic Murmur**: Presence of a systolic heart murmur (e.g., Yes/No or 1/0). May indicate valvular or structural heart issues.
+- **Diastolic Murmur**: Presence of a diastolic heart murmur (e.g., Yes/No or 1/0). Can also suggest valvular dysfunction.
+- **Typical Chest Pain**: Presence of chest pain typical of angina (e.g., Yes/No or 1/0). A primary symptom of coronary artery disease.
+- **Dyspnea**: Shortness of breath (e.g., Yes/No or 1/0). Often associated with cardiac issues or reduced oxygen supply.
+- **Function Class**: Functional classification of heart failure (e.g., NYHA Class I-IV). Indicates the severity of heart failure symptoms.
+- **Atypical**: Presence of atypical chest pain (e.g., Yes/No or 1/0). Pain not typical of angina but still potentially relevant.
+- **Nonanginal**: Presence of non-anginal chest pain (e.g., Yes/No or 1/0). Chest pain not related to coronary artery disease.
+- **Exertional CP**: Exertional Chest Pain, chest pain triggered by physical activity (e.g., Yes/No or 1/0). Suggests possible angina.
+- **LowTH Ang**: Low Threshold Angina, angina occurring at low levels of exertion (e.g., Yes/No or 1/0). Indicates severity of coronary obstruction.
+- **Q Wave**: Presence of pathological Q waves on ECG (e.g., Yes/No or 1/0). Suggests previous myocardial infarction.
+- **St Elevation**: Presence of ST segment elevation on ECG (e.g., Yes/No or 1/0). Indicates acute myocardial injury or infarction.
+- **St Depression**: Presence of ST segment depression on ECG (e.g., Yes/No or 1/0). Suggests ischemia or strain on the heart.
+- **Tinversion**: Presence of T-wave inversion on ECG (e.g., Yes/No or 1/0). Can indicate ischemia or other cardiac abnormalities.
+- **LVH**: Left Ventricular Hypertrophy status (e.g., Yes/No or 1/0). Indicates thickening of the heart muscle, often due to hypertension.
+- **Poor R Progression**: Poor R wave progression on ECG (e.g., Yes/No or 1/0). May suggest anterior wall damage or other issues.
+- **BBB**: Bundle Branch Block status (e.g., Yes/No or 1/0). Indicates conduction abnormalities in the heart.
+- **FBS**: Fasting Blood Sugar level (mg/dL). High levels can indicate diabetes or prediabetes.
+- **CR**: Creatinine level (mg/dL). Measures kidney function, relevant to overall cardiovascular health.
+- **TG**: Triglyceride level (mg/dL). Elevated levels are a risk factor for coronary artery disease.
+- **LDL**: Low-Density Lipoprotein cholesterol level (mg/dL). "Bad" cholesterol, a major risk factor for atherosclerosis.
+- **HDL**: High-Density Lipoprotein cholesterol level (mg/dL). "Good" cholesterol, protective against heart disease.
+- **BUN**: Blood Urea Nitrogen level (mg/dL). Another measure of kidney function.
+- **ESR**: Erythrocyte Sedimentation Rate (mm/hr). Indicates inflammation, which can be linked to cardiovascular issues.
+- **HB**: Hemoglobin level (g/dL). Low levels can indicate anemia, affecting oxygen delivery.
+- **K**: Potassium level (mEq/L). Electrolyte balance is crucial for heart function.
+- **Na**: Sodium level (mEq/L). Also critical for heart and fluid balance.
+- **WBC**: White Blood Cell count (cells/µL). Elevated levels may indicate infection or inflammation.
+- **Lymph**: Lymphocyte percentage. Part of the immune response, relevant to overall health.
+- **Neut**: Neutrophil percentage. Another immune marker, can indicate acute stress or infection.
+- **PLT**: Platelet count (cells/µL). Important for clotting, relevant in cardiovascular events.
+- **EF-TTE**: Ejection Fraction by Transthoracic Echocardiography (%). Measures heart pumping efficiency.
+- **Region RWMA**: Regional Wall Motion Abnormality (e.g., Yes/No or 1/0). Indicates areas of the heart not moving properly, often due to ischemia.
+- **VHD**: Valvular Heart Disease status (e.g., Yes/No or 1/0). Indicates issues with heart valves.
+- **Cath**: Catheterization need (e.g., Yes/No or 1/0). The target variable, indicating whether the patient requires catheterization due to coronary artery disease severity.
+
+These variables collectively provide a comprehensive profile of the patient's health, cardiovascular risk factors, and diagnostic indicators, which are used by the machine learning models to predict the need for catheterization. 
 
 ## Models Implemented
 The following machine learning models were used in this study:
@@ -12,16 +74,6 @@ The following machine learning models were used in this study:
 - LightGBM (Light Gradient Boosting Machine)
 - CatBoost
 
-## Performance Results
-Here are the performance metrics for each model based on a test set (20% of the data):
-- **Logistic Regression**: Accuracy: 0.87, Precision: 0.87, Recall: 0.95, F1 Score: 0.91, TN: 12, FP: 6, FN: 2, TP: 41
-- **KNN**: Accuracy: 0.74, Precision: 0.76, Recall: 0.91, F1 Score: 0.83, TN: 6, FP: 12, FN: 4, TP: 39
-- **Random Forest**: Accuracy: 0.87, Precision: 0.86, Recall: 0.98, F1 Score: 0.91, TN: 11, FP: 7, FN: 1, TP: 42
-- **XGBoost**: Accuracy: 0.87, Precision: 0.87, Recall: 0.95, F1 Score: 0.91, TN: 12, FP: 6, FN: 2, TP: 41
-- **LightGBM**: Accuracy: 0.84, Precision: 0.84, Recall: 0.95, F1 Score: 0.89, TN: 10, FP: 8, FN: 2, TP: 41
-- **CatBoost**: Accuracy: 0.85, Precision: 0.85, Recall: 0.95, F1 Score: 0.90, TN: 11, FP: 7, FN: 2, TP: 41
-
-Visualizations such as performance metric heatmaps and confusion matrix heatmaps are saved as `models_performance_heatmap.png` and `models_confusion_matrix_heatmap.png`. Individual model feature importance plots and confusion matrix heatmaps are also available in the project directory.
 
 ## Methods: Machine Learning Models for Cath Prediction
 In this study, we employed a variety of machine learning models to predict the target variable "Cath" using a dataset comprising various features. The models were selected to represent a broad spectrum of algorithmic approaches, including linear models, tree-based ensembles, gradient boosting techniques, and nearest neighbor methods. Each model's performance was evaluated using accuracy, precision, recall, and F1 score, alongside confusion matrix metrics (True Negatives, False Positives, False Negatives, True Positives). Feature importance was analyzed to understand the contribution of each variable to the predictive performance. Below, we describe the models utilized:
@@ -62,7 +114,6 @@ To replicate this analysis, follow these steps:
    ```
 
 ## Files in Repository
-- `dataset.csv`: The dataset used for training and testing the models.
 - `cath_logistic_prediction.py`: Script for Logistic Regression model.
 - `cath_knn_prediction.py`: Script for K-Nearest Neighbors model.
 - `cath_randomforest_prediction.py`: Script for Random Forest model.
@@ -70,7 +121,7 @@ To replicate this analysis, follow these steps:
 - `cath_lightgbm_prediction.py`: Script for LightGBM model.
 - `cath_catboost_prediction.py`: Script for CatBoost model.
 - `compare_models.py`: Script to compare performance across all models.
-- Various PNG files for visualizations (e.g., `models_performance_heatmap.png`, `logistic_feature_importance.png`).
+
 
 ## License
 This project is licensed under the MIT License - see the LICENSE file for details (if applicable, or add your preferred license).
